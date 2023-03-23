@@ -2,4 +2,4 @@
 
 
 
-![]([https://github.com/LeKudesnitsa/Examples/blob/main/C_hexagonal/README.MD])
+![](https://github.com/LeKudesnitsa/Examples/blob/main/C_hexagonal/README.MD)
