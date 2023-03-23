@@ -1,0 +1,21 @@
+{
+	"manifest_version": 3,
+
+	"name": "FIFO queue tabs manager",
+	"description": "Saving tabs adresses URLs (URIs) to file and making lists of it, making load them one by one",
+	"version": "0.5",
+	"icons": {
+		"16": "img/icon.png",
+		"32": "img/icon.png",
+		"48": "img/icon.png",
+		"128": "img/icon.png"
+	},
+	"permissions": [
+		"tabs",
+		"storage"
+	],
+	"action": {
+		"default_title": "FIFO queue tabs manager",
+		"default_popup": "pages/popup.html"
+	}
+}

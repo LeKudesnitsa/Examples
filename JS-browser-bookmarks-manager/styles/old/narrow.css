@@ -1,0 +1,104 @@
+.root {
+	/* width: 450px; */
+	/* position: relative; */
+	
+	/* width: auto;	 */
+	/* position: relative; */
+	width: 362px;
+}
+.menu_item {
+	border: 1px outset lightgray;
+	background: #ffffff;
+	padding: 1%;
+	margin: 1px;
+	
+	width: 350px;
+	
+	/* float : right; */
+	/* position: absolute; */ 
+	/* top : 0; */ 
+	/* right: 0; */ 
+	
+	
+}
+.menu_item_options{
+	margin-left: 3%;
+}
+.list_elem{
+	overflow: hidden;
+	border: 1px outset lightgray;
+	padding: 1px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-right: 1%;
+}
+.list_separated{
+	/* margin-top: 1%; */
+	/* border: 1px outset lightgray; */
+	/* padding: 1px; */
+	overflow: hidden;
+	overflow-y: scroll;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	
+	
+
+}
+.sessions{
+
+}
+.tabs_manage{
+
+}
+.tabs_list{
+}	   
+.underground{
+
+}
+
+.clear{
+    clear: both;
+}
+
+.buttons  { /* table */
+/*table { /**/
+	width: 100%; 
+	border-spacing: 0px; 
+	table-layout: fixed;
+
+}
+/*
+.buttons,
+.buttons 
+*/
+.buttons td, th {
+	padding: 0px;
+}
+
+.radio {
+	float: left;
+	border-collapse: collapse;
+	/* border: solid 1px black;  */
+
+	/* width: 200px; */
+	/* height: 50px; */
+	/* border-collapse: collapse;  */
+}
+.radio tr{
+	/* border: none; */
+
+}
+.radio td{
+	/* border-right: solid 2px #e6e6e6;  */
+	border-left: solid 2px #c2c2c2;
+	padding: 3px;
+
+}
+.radio th{
+	/* border: 1px solid black; */
+}
+
+/* .radio:after{ */
+	/* content: " "; */
+	/* clear: both; */
+/* } */

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="UTF-8">
+	<!---<meta name="viewport" content="width=300">-->
+	<link rel="stylesheet" 				type="text/css" href="../styles/base.css">
+	<link rel="stylesheet" 				type="text/css" href="../styles/narrow.css"	id="narrow_mode_css">
+	<link rel="stylesheet alternate" 	type="text/css" href="../styles/wide.css"	id="wide_mode_css"> 
+</head>
+<body style="background: #f5f9ff;"> <!-- #f2f2f2; -->
+	
+	<div class="root">
+		<!--
+		<p>
+			<input type="button" id="test_input" value="Проверить">
+			<input type="button" id="clear_storage" value="Clear storage">
+		</p>
+		-->
+		<!--<p><input type="text" id="test_result" size="120" value="Waiting..." readonly></p>-->
+		<!-- style="width:250px;height:150px;resize: none;" -->
+		<!-- <textarea id="test_result" rows="1" cols="55" style="resize: none;" readonly>Waiting...</textarea> -->
+		
+		<!--
+		ВИДИМО, НУЖЕН МАССИВ JSON ЧТОБЫ БЫЛО УДОБНО РЕДАКТИРОВАТЬ СПИСОК, А ПОЛЕ ПРИДЁТСЯ ДЕЛАТЬ НЕ TEXTAREA. ОБДУМАЙ ДИЗАЙН. 
+		ВОЗМОЖНО, НАДО БУДЕТ ДЕЛАТЬ ЭТО ТАБЛИЦЕЙ. ЭЛЕМЕНТЫ ДОЛЖНЫ БЫТЬ КЛИКАБЕЛЬНЫМИ ССЫЛКАМИ. МОЖНО ОСТАВИТЬ ОБА СПОСОБА
+		
+		Весь JSON можно запихнуть строкой. 10600 строк (= ссылок), 833079 символов (21280 слов), 823 КБ 
+		<br>//[] - опция
+		<br>TODO: 
+		<br>Создать список
+		<br>выбор действия при нажатии на кнопку расширения (невозможно?)
+		<br>-добавить в список
+		<br>--выбор списка 
+		<br>--[] закрыть вкладку
+		<br>---выполнить сейчас
+		<br>--добавить по ЧИСЛО вкладок (3, 5, 10...)
+		<br>--добавить все вкладки 
+		<br>---[]справа
+		<br>---[]слева
+		<br>---выполнить сейчас
+		<br>-просто получить список ссылок
+		<br>--[]как файл
+		<br>--с порядковыми цифрами
+		<br>--скопировать в буфер
+		<br>--выполнить сейчас
+		<br>-открыть вкладку из списка 
+		<br>--[] в новом окне
+		<br>--[]открыть по ЧИСЛО вкладок (3, 5, 10...)
+		<br>--[] из файла 
+		<br>---выполнить сейчас
+		<br>
+		<br>Эскопртировать список вкладок
+		<br>Импортировтаь список вкладок
+		<br>
+		
+
+		-->
+		<!--
+		Принцип работы списк примерно таков:
+		Каждая строчка это ссылка на сайт. Возможно нужно писать заголовки.
+		У каждой строчки есть кнопка удалить (+ переместить в другой список но это потом), 
+		а также	 (возможно) функционал перетаскивания в другой порядок.
+		строчка: <div class="list_elem" id=" ">
+		
+		
+		-->
+		<!--
+		<div class="menu_item"><input type="button" id="make_list" value="Создать список">
+		</div>
+		<div class="menu_item"><input type="button" id="add_to_list" value="Добавить в список">
+		</div>
+		-->
+		
+		<!--
+		<div class="menu_item">
+		<p><input type="button" id="get_url_list" value="Get URLs list" style="width: 100%;"></p>
+			<div class="menu_item_options">
+				<input type="checkbox" id="param_URL_list_witn_numbers" style="margin-bottom: 20 px;">With counting numbers 
+				<br>
+				<input type="button" id="get_url_list_as_file" value="Save as file" title="Save list as simple text file, each line contains one link"> 
+				<input type="button" id="url_list_copy_to_buffer" value="Copy to clipboard">
+				<input type="button" id="url_list_copy_to_buffer" value="Export" title="Export to JSON file. Use it if you want load this session to another browser or just in backup purposes.">
+				<div class="list_out" style="display: none; text-align: auto;">
+					<p style="font-size: 15px">List: 
+						<input type="button" id="hide_curr_url_list" value="Hide">
+						<input type="button" id="show_curr_url_list" value="Show" style="display: none; ">
+						<input type="button" id="clear_curr_url_list" value="Clear!" style="float:right; margin-right: 3%;">
+					</p>
+					<textarea id="list_output" rows="1" cols="50" style="resize: none;" wrap="off" readonly></textarea>
+				</div>
+				
+				<div class="list_output_elems" id="list_output_elems" style=" text-align: auto; display: none;">
+				
+				 
+				</div>
+				
+				<textarea id="filler" rows="5" cols="50" style=" resize: none;" wrap="off" readonly></textarea>
+			</div> 
+		</div>
+		  
+		-->
+		<!--
+		<div class="menu_item"><input type="button" id="add_from_list" value="открыть вкладку из списка">
+		</div>
+		-->
+		<!-- <div id="response" class="response"></div> -->
+		<div class="sessions menu_item">
+			<!-- переделать всё в структуру? -->
+			<!-- СНАЧАЛА СЕССИИ!! НУЖНО ПОМНИТЬ ВЫБРАННУЮ миграция между сессиями? -->
+			<!-- <br>choose session |  make new (can be empty) | save current session | name + date (при создании новой сессии) | select as default | Open options in new tab  -->
+			<!-- select as default |  -->
+			
+			<!-- <br> -->
+<!------------>
+			<div id="response" class="response"></div>
+			
+			<!-- <select id="session_select" style="width: 437px;"> -->
+			<select id="session_select" style="width: 350px;">
+				<option id="session_item_no" >No sessions!</option>
+			</select>
+			<!-- <input type="button" id="sessions_save" value="Save session"> -->
+			<input type="button" id="sessions_new" value="New session">
+			<input type="button" id="sessions_delete_selected" value="Delete this">
+			<input type="button" id="sessions_rename" value="Rename">
+			<input type="button" id="sessions_manage" value="Manage tabs">
+			
+			<input type="button" id="open_in_tab" value="tab" style="float: right;" title="Open menu in new tab">
+			<div style="border: 1px lightgray outset; background: #E5E5E5; margin-right: 1%; float: right;"><input type="checkbox" id="param_wide_mode"> Wide</div>
+			
+			<br>
+			<!-- Waiting for Workspace API from devs... -->
+			<!-- <input type="checkbox" id="param_only_this_workspace">Add tab only from current space -->
+			<input type="checkbox" id="param_show_tabs_menu"><label for="param_show_tabs_menu">Always show tabs menu</label> 
+			<input type="checkbox" id="param_empty_new_session"><label for="param_empty_new_session">Don't add tabs to new session</label>  
+			<!-- <div style="float: right;"><input type="checkbox" id="param_wide_mode"> Wide</div> -->
+			<!-- <input type="button" id="view" value="View" style="float: right;"> -->
+			<br>
+			<!-- <div style="display: none;"><input type="checkbox" id="param_date_in_name"><label for="param_date_in_name"> Add date to name </label></div>  style="margin-bottom: 20 px;"> -->
+			  
+			<div id="sessions_name" style="display: none;">
+				<input type="text" id="session_name_field" size="50" placeholder="Input name" >
+				<input type="button" id="sessions_rename_ok" value="OK">
+			</div>
+			
+			
+			
+			<!-- <div id="dev" style="display: none;"> -->
+			<div id="dev">
+			<br> DEV
+			<input type="button" id="sessions_clear" value="clear sessions">
+			<input type="button" id="options_clear" value="clear_options">
+			
+			<input type="button" id="detect" value="detect">
+			</div>
+			
+			<div id="debug_menu"></div>
+		</div>
+		
+		<!-- <div class="menu_item tabs_list" style="display: none;>  -->
+		<div class="tabs_manage menu_item" style="display: none;"> 
+		<!--<div class="menu_item"><!-- tabs_list"> <!-- style="display: none;> <!-- updatable? hidden? -->
+		<!-- <div class="menu_item"> -->
+			<!-- ЭТО МЕНЮ СКРЫТО ПОКА НЕ ВЫБРАНА СЕССИЯ<br> -->
+			МОЖНО ДВИГАТЬ НЕ ВКЛАДКИ А ВСЁ ОСТАЛЬНОЕ | block list | add tabs | numbers| load tabs (numbers or mouse select)<br>
+			ЯКОРЬ | show links/titles
+			<br>МУЛЬТИВЫБОР! помнить в tabs?| можно добавлять из текстового списка | добавить в пространство сейва с выбранной вкладки по вкладку, загрузить всё/часть
+			
+			<!--<br>add NUMBER tabs from []left []right | ignore tabs that already in list | copy to clipboard -->
+			<br>--------------------------------------------------
+			<br>
+			Add/Load <input type="text" id="manage_tabs_count" size="1">  tabs from 
+			<input type="checkbox" id="param_add_left" style="margin-bottom: 20 px;"><label for="param_add_left">left </label> 
+			<input type="checkbox" id="param_add_right" style="margin-bottom: 20 px;"><label for="param_add_right">right </label> <br>
+			<input type="checkbox" id="param_add_this_window" style="margin-bottom: 20 px;"><label for="param_add_this_window"> only this window </label> 
+			<input type="checkbox" id="param_URL_list_witn_numbers" style="margin-bottom: 20 px;"><label for="param_URL_list_witn_numbers">Show indexes </label><br>
+			<input type="checkbox" id="param_ignore_existing" style="margin-bottom: 20 px;"><label for="param_ignore_existing">Ignore tabs that already in list </label>
+			<input type="checkbox" id="param_title_instead_of_link" style="margin-bottom: 20 px;"><label for="param_title_instead_of_link">Show titles instead of links</label>
+			
+						
+			<!-- <input type="button" id="add_tabs" value="Add several tabs" style="width: 100%;" title="Add several tabs to current session"> -->
+			<!-- <input type="button" id="add_curr_tab" value="Add this tab" style="width: 100%;" title="Add selected tab to current session"> -->
+			<!-- <input type="button" id="get_all_tabs" value="Add all tabs" style="width: 100%;" title="Add all tabs to current session"> -->
+			<!-- <input type="button" id="delete_all_tabs" value="Delete all tabs" style="width: 100%;" title="Deletes all tabs in current session"> -->
+			
+			
+			<table class="buttons">
+			<!-- <table> -->
+				<tr>
+					<td><input type="button" id="add_tabs" value="Add several tabs" style="width: 100%;" title="Add several tabs to current session"></td>
+					<td><input type="button" id="add_curr_tab" value="Add this tab" style="width: 100%;" title="Add selected tab to current session"></td>
+				</tr>
+				<tr>
+					<td><input type="button" id="get_all_tabs" value="Add all tabs" style="width: 100%;" title="Add all tabs to current session"></td>
+					<td><input type="button" id="delete_all_tabs" value="Delete all tabs" style="width: 100%;" title="Deletes all tabs in current session"></td>
+				</tr>
+			</table>
+			
+			<!-- <div> -->
+			<!-- <input type="button" id="add_tabs" value="Add several tabs" style="width: 49%;" title="Add several tabs to current session"> -->
+			<!-- <input type="button" id="add_curr_tab" value="Add this tab" style="width: 49%;" title="Add selected tab to current session"> -->
+			<!-- <input type="button" id="get_all_tabs" value="Add all tabs" style="width: 49%;" title="Add all tabs to current session"> -->
+			<!-- <input type="button" id="delete_all_tabs" value="Delete all tabs" style="width: 49%;" title="Deletes all tabs in current session"> -->
+			<!-- </div> -->
+			
+			<!-- <div class="list_separated" id="list_separated" > <!-- style="text-align: auto; max-height: 100px; overflow-y: scroll;"> <!--  display: none; --> 
+				<!-- <div>Empty... </div> -->
+			<!-- </div> -->
+			<!-- <input type="button" id="copy_to_clipboard" value="Copy list to clipboard" style="width: 100%;" title="Copy list to clipboard as simple links list"> -->
+		</div>
+		
+		<div class="tabs_list menu_item">
+			
+			<div class="list_separated" id="list_separated" > <!-- style="text-align: auto; max-height: 100px; overflow-y: scroll;"> <!--  display: none; -->
+				<div>Empty... </div>
+				<!-- style="display: none;" -->
+			</div> 
+			<textarea class="" id="list_output" rows="50" cols="95" style="resize: none; display: none; overflow: scroll;" wrap="off" readonly>Waiting...</textarea>
+			<textarea class="" id="list_input" rows="50" cols="95" style="resize: none; display: none; overflow: scroll;" wrap="off" placeholder="Input text links list or JSON here"></textarea>
+
+			<!-- <textarea class="" id="test_result" rows="1" cols="55" style="resize: none;" readonly>Waiting...</textarea> -->
+			<!-- <textarea class="menu_item" id="test_result" rows="1" cols="61" style="resize: none;" readonly>Waiting...</textarea> -->
+		</div> 
+		
+		<div class="menu_item underground"> <!-- updatable? hidden? -->
+			text list | export-import (all or one session) | copy to clipboard when text | Open options in new tab<br>
+			<div id="im_ex_select">
+				<input type="button" id="import_sel" value="Import"  title="Import session as text or from file (.json or .txt)">
+				<input type="button" id="export_sel" value="Export"  title="Export session as text or in file (.json or .txt)">
+			</div>
+			<div id="import" style="display: none;">
+				<span style="color : blue;">Press "Import" again to exit this menu.</span>
+				<br>
+				Text list must be formatted in the following way: one string — one link. [All links will be added as single session] 
+				<br>
+				Indexes before links will be ignored. See "Export" menu for more undrestanding.
+				<br>
+				You can import several sessions by JSON. JSON must be generated by this extension.
+				<br>
+				<input type="checkbox" id="im_to_this_session"><label for="im_to_this_session">Add to selected session</label>
+				<!-- <input type="checkbox" id="im_string_is_ses_name"><label for="im_string_is_ses_name">Interpret text lines as session name(s).</label> -->
+				<input type="checkbox" id="im_string_is_ses_name"><label for="im_string_is_ses_name">First line is a session name</label>
+				<br>
+				<input type="checkbox" id="im_add_https"><label for="im_add_https">Add <i>http://</i> to "bold" links</label>
+				<!-- <br> -->
+				<!-- <input type="checkbox" id="im_sort_by_text_input"><label for="im_sort_by_text_input">Sort considering input indexes</label> -->
+				<br>
+				
+				<input  type="button" id="im_from_input" style="width: 50%; float: left;" value="From text">
+				<input  type="button" id="im_from_file" style="width: 50%;" value="From file">
+				<div class="clear"></div>
+
+			</div>
+			<div id="export" style="display: none;">
+				<span style="color : blue;">Press "Export" again to exit this menu.</span>
+				<br>
+				<span style="color : red;">If you want to backup your session(s) and later load them back to this extension, better use JSON!</span>
+				<br>
+				If you want to just get links, use export as text.
+				<table class="radio"> 
+					<tr>
+						<td><input name="export_format" type="radio" value="text_list" id="text_list" checked><label for="text_list"> Text list </label></td>
+						<td><input name="export_amount" type="radio" value="exp_only_this" id="exp_only_this" checked><label for="exp_only_this"> This session </label></td>
+						<!-- <td><input name="export_target" type="radio" value="on_screen" id="on_screen" checked><label for="on_screen"> On screen </label></td> -->
+						<td><input type="button" id="exp_on_screen" style="width: 100%;" value="Show on screen"></td>
+						
+					</tr>
+					<tr>
+						<td><input name="export_format" type="radio" value="JSON" id="JSON"><label for="JSON"> JSON </label></td>
+						<td><input name="export_amount" type="radio" value="exp_all" id="exp_all" ><label for="exp_all"> All sessions </label></td>
+						<!-- <td><input name="export_target" type="radio" value="to_file" id="to_file"><label for="to_file"> To file </label></td>  -->
+						<td><input  type="button" id="exp_to_file" style="width: 100%;" value="Save to file"></td> 
+					</tr>
+				</table>
+
+				<div class="clear"></div>
+				<div id="exp_text_options" style="display: none;">
+					<input type="checkbox" id="exp_with_indexes"><label for="exp_with_indexes">With indexes</label>
+					<input type="checkbox" id="exp_with_session_names"><label for="exp_with_session_names">With session names</label>
+					<input type="checkbox" id="exp_decode_percent_encoding"><label for="exp_decode_percent_encoding">Decode percent encoding</label>
+				</div>
+				<input type="button" id="copy_to_clipboard" value="Copy to clipboard"  title="Copy list to clipboard" style="display: none;">
+			</div>
+		</div>
+		
+	</div>
+	<!-- ЗДЕСЬ ПОТОМУ ЧТО ТУПЫЕ ПОЛИТИКИ И ПРИХОДИТСЯ СЛУШАТЬ ВСЁ-->
+	<!-- -->
+	
+	<div id="wait" style="display: none;"></div>
+	
+	<script src="../scripts/background.js" 	type="text/javascript"></script>
+
+	<script src="../scripts/globals.js" 	type="text/javascript"></script>
+	<script src="../scripts/saveload.js" 	type="text/javascript"></script>
+	<script src="../scripts/tabs.js" 		type="text/javascript"></script>
+	<script src="../scripts/layout.js" 		type="text/javascript"></script>
+	<script src="../scripts/ui.js" 			type="text/javascript"></script>
+	<script src="../scripts/im_ex.js" 		type="text/javascript"></script>
+	<script src="../scripts/actions.js" 	type="text/javascript"></script>
+	
+</body>
+</html>
